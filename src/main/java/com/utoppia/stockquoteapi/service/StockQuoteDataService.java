@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class StockQuoteDataService {
-    @Autowired
-    private ModelMapper modelMapper;
+
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     private StockQuoteDataRepository stockQuoteDataRepository;
