@@ -31,8 +31,7 @@ public class FinnHubService {
     @Autowired
     private StockQuoteDataRepository stockQuoteDataRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private ModelMapper modelMapper = new ModelMapper();
 
     private final static Logger logger = LoggerFactory.getLogger(FinnHubService.class);
     private final static String QP_NAME_SYMBOL = "symbol";

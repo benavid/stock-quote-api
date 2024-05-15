@@ -112,9 +112,4 @@ public class StockQuoteApiConf {
                 .build();
     }
 
-    @Bean
-    public ModelMapper modelMapperBean() {
-        return new ModelMapper();
-    }
-
 }
