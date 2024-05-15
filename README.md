@@ -1,24 +1,115 @@
-# Getting Started
+# stock-quote-api
 
-### Reference Documentation
-For further reference, please consider the following sections:
+Microservice application designed to interface with the Finnhub API for retrieving and updating stock market data for specified symbols(i.e.AAPL). The application perform two main functions:
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.2.5/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.2.5/gradle-plugin/reference/html/#build-image)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/3.2.5/reference/htmlsingle/index.html#actuator)
-* [Spring Reactive Web](https://docs.spring.io/spring-boot/docs/3.2.5/reference/htmlsingle/index.html#web.reactive)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.2.5/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
+* Retrieve and display stored stock data from a database to the user.
+* Refresh and update the database with the latest stock data from the Finnhub API.
 
-### Guides
-The following guides illustrate how to use some features concretely:
+## Technologies
 
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
-* [Building a Reactive RESTful Web Service](https://spring.io/guides/gs/reactive-rest-service/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+* Java 21
+* SpringBoot
+* Gradle
+* intelliJ (as IDE)
 
-### Additional Links
-These additional references should also help you:
+## Get Start
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+### Clone project
+
+```
+$ git clone https://github.com/benavid/stock-quote-api.git
+```
+
+### Compiling
+
+```
+$ cd stock-quote-api
+$ ./gradlew clean build
+```
+
+### Start the application
+
+```
+$ cd stock-quote-api
+$ java -jar build/libs/stock-quote-api-0.0.1-SNAPSHOT.jar
+```
+
+### Test application health
+In your browse put the following url
+```
+http://localhost:8093/api/actuator/health
+```
+You should see the following that indicate that the application is up and healthy
+```
+{
+   "status":"UP",
+   "components":{
+      "db":{
+         "status":"UP",
+         "details":{
+            "database":"H2",
+            "validationQuery":"isValid()"
+         }
+      },
+      "diskSpace":{
+         "status":"UP",
+         "details":{
+            "total":502392610816,
+            "free":400779972608,
+            "threshold":10485760,
+            "path":"/home/andresbenavides/projects/utoppia/stock-quote-api/.",
+            "exists":true
+         }
+      },
+      "ping":{
+         "status":"UP"
+      }
+   }
+}
+```
+
+
+
+
+### How can you run the APIs?
+
+You can find all the necessary information to exercise the APIs in the swagger documentation
+
+```
+http://localhost:8093/api/swagger-ui/index.html
+```
+
+### How access to H2 db in memory?
+
+You can access to H2 db console put the following url in your browser
+
+```
+http://localhost:8093/api/h2-console/
+```
+
+## Code quality and security
+
+### Generate test coverage report
+
+When you compile the applicatioin with build gradle task automatically junit are runned and test coverage is calculated
+After execute the build gradle task you can find the test coverage repost in **build/reports/tests/coverageReport/index.html**
+
+```
+$ cd stock-quote-api
+$ ./gradlew build
+$ cd build/reports/tests/coverageReport
+```
+
+
+### Vulnerability Scanner
+
+When you execute the dependencyCheckAnalyze gradle task automatically the vulnerability dependency report is calculated
+After execute the dependencyCheckAnalyze gradle task you can find the dependency check repost in **build/reports/dependency-check-report.html**
+
+```
+$ cd stock-quote-api
+$ ./gradlew dependencyCheckAnalyze
+$ cd build/reports
+```
+
 
